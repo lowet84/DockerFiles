@@ -1,0 +1,1 @@
+sudo docker run -it --privileged -v /home/fredrik/rartemp/:/out -v /home/fredrik/filer/:/in -d -p 192.168.1.131:137:137 -p 192.168.1.131:138:138 -p 192.168.1.131:139:139 -p 192.168.1.131:137:137/udp -p 192.168.1.131:138:138/udp -p 192.168.1.131:139:139/udp lowet84/rar2fs
