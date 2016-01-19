@@ -1,8 +1,12 @@
-FROM ubuntu:14.04
+FROM timhaak/plex
 
-RUN sudo apt-get install -y wget
-RUN wget https://downloads.plex.tv/plex-media-server/0.9.15.1.1639-26325ea/plexmediaserver_0.9.15.1.1639-26325ea_amd64.deb
-RUN dpkg -i plexmediaserver_0.9.15.1.1639-26325ea_amd64.deb
+RUN sudo apt-get update
+RUN sudo apt-get install libfuse2
 
+RUN mkdir /rar2fs_install
+RUN mkdir /data_rar2fs
 
-EXPOSE 32400
+COPY rar2fs/*  /rar2fs_install/
+COPY libunrar.so /usr/lib/
+
+RUN sed -i "2i /rar2fs_install/rar2fs -o allow_other /data /data_rar2fs --seek-length=1" start.sh
