@@ -2,6 +2,7 @@ FROM timhaak/plex
 
 RUN sudo apt-get update
 RUN sudo apt-get install libfuse2
+RUN sudo apt-get install p7zip-full
 
 RUN mkdir /rar2fs_install
 RUN mkdir /data_rar2fs

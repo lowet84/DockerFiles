@@ -1,25 +1,17 @@
 #!/bin/bash
-COUNTER = 1
 
-if [ -f dockerBackup ];
+if [ $1 == "backup"  ]
+then 
+
+# [plex]
+
+
+elif [ $1 == "restore"  ]
 then
-   echo "dockerBackup file found"
-else
-   touch dockerBackup
-   echo "Add docker data containers to dockerBackup file: <name> <volume> <volume> ..."
-   exit
-fi
+   
+# [plex]
 
-while IFS='' read -r line || [[ -n "$line" ]]; do
-   let "COUNTER = 0"
-   for word in $line
-   do
-      ((COUNTER++))
-      if [ $COUNTER == 1 ]
-      then
-         echo "name: " $word
-      else
-         echo "line: " $word
-      fi
-   done
-done < "dockerBackup"
+
+else
+   echo "error"
+fi
