@@ -16,3 +16,6 @@ sudo mv backup.7z $TARGET/sonarr_backup.7z
 
 sudo sh deluge/backup.sh
 sudo mv backup.7z $TARGET/deluge_backup.7z
+
+sudo sh couchpotato/backup.sh
+sudo mv backup.7z $TARGET/couchpotato_backup.7z
