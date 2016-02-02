@@ -18,7 +18,14 @@ else
   cp /update/mount.sh /config/mount.sh
 fi
 echo "Running mount script"
-sh /config/mount.sh
+
+if sh /config/mount.sh
+then
+  echo "Mount script run successfully"
+else
+  echo "Mount script failed, shutting down..."
+  exit 1
+fi
 
 # Update plex
 cd /update
