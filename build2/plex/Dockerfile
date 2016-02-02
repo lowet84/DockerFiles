@@ -1,7 +1,7 @@
 FROM ubuntu:15.10
 MAINTAINER Fredrik Löwenhamn <fredrik.lowenhamn@gmail.com>
 
-RUN apt-get update && apt-get install -y wget && \ 
+RUN apt-get update && apt-get install -y wget cifs-utils && \ 
     apt-get -y autoremove && \
     apt-get -y clean && \
     rm -rf /var/lib/apt/lists/* && \
@@ -10,6 +10,7 @@ RUN apt-get update && apt-get install -y wget && \
 RUN mkdir /update
 ADD plexupdate.sh /update/plexupdate.sh
 ADD Preferences.xml /update/Preferences.xml
+ADD mount.sh /update/mount.sh
 
 RUN chmod + /update/plexupdate.sh
 WORKDIR /update

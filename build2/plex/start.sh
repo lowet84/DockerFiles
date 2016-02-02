@@ -1,4 +1,25 @@
 #!/bin/bash
+if [ -f /config/Library/Application\ Support/Plex\ Media\ Server/Preferences.xml ]
+then
+  echo "Preferences.xml exists"
+else
+  echo "no Preferences.xml exists, copying from restore"
+  mkdir /config/Library
+  mkdir /config/Library/Application\ Support
+  mkdir /config/Library/Application\ Support/Plex\ Media\ Server
+  cp /update/Preferences.xml /config/Library/Application\ Support/Plex\ Media\ Server/Preferences.xml
+fi
+
+if [ -f /config/mount.sh ]
+then
+  echo "Mount script mount.sh exists"
+else
+  echo "Creating mount script"
+  cp /update/mount.sh /config/mount.sh
+fi
+echo "Running mount script"
+sh /config/mount.sh
+
 # Update plex
 cd /update
 
