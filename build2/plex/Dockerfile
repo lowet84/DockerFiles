@@ -7,16 +7,18 @@ RUN apt-get update && apt-get install -y wget cifs-utils && \
     rm -rf /var/lib/apt/lists/* && \
     rm -rf /tmp/*
 
-RUN mkdir /update
+RUN mkdir /update 
 ADD plexupdate.sh /update/plexupdate.sh
 ADD Preferences.xml /update/Preferences.xml
 ADD mount.sh /update/mount.sh
+#ADD libunrar.so /usr/lib
+#ADD rar2fs /usr/bin
 
 RUN chmod + /update/plexupdate.sh
 WORKDIR /update
 RUN ./plexupdate.sh -p -a
 
-VOLUME ["/config","/data"]
+VOLUME ["/config","/data","/transcode"]
 
 ADD ./start.sh /start.sh
 RUN chmod u+x  /start.sh

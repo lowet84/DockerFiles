@@ -26,6 +26,7 @@ else
   echo "Mount script failed, shutting down..."
   exit 1
 fi
+#rar2fs -o allow_other /mnt /rar2fs --seek-length=1 
 
 # Update plex
 cd /update
