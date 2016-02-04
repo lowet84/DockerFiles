@@ -11,8 +11,9 @@ RUN mkdir /update
 ADD update.sh /update/update.sh
 ADD mount.sh /update/mount.sh
 
-ADD ./start.sh /start.sh
-RUN chmod u+x  /start.sh
+RUN mkdir /etc/service/couchpotato
+ADD start.sh /etc/service/couchpotato/run
+RUN chmod +x /etc/service/couchpotato/run
 
 EXPOSE 5050
 VOLUME ["/config","/data"]
@@ -24,4 +25,4 @@ ENV RUN_AS_ROOT="true" \
 
 WORKDIR /update
 RUN sh update.sh
-CMD ["/start.sh"]
+CMD ["/sbin/my_init"]
