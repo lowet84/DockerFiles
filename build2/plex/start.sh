@@ -10,15 +10,6 @@ else
   cp /update/Preferences.xml /config/Library/Application\ Support/Plex\ Media\ Server/Preferences.xml
 fi
 
-#if [ -f /config/mount.sh ]
-#then
-#  echo "Mount script mount.sh exists"
-#else
-#  echo "Creating mount script"
-#  cp /update/mount.sh /config/mount.sh
-#fi
-#echo "Running mount script"
-
 if sh /update/mount.sh
 then
   echo "Mount script run successfully"
@@ -26,7 +17,6 @@ else
   echo "Mount script failed, shutting down..."
   exit 1
 fi
-#rar2fs -o allow_other /mnt /rar2fs --seek-length=1 
 
 # Update plex
 cd /update
@@ -42,49 +32,50 @@ rm plexmediaserver*
 
 # Start plex
 rm /config/Library/Application\ Support/Plex\ Media\ Server/plexmediaserver.pid
-set -x
-GROUP=plextmp
+#set -x
+#GROUP=plextmp
 
-mkdir -p /config/logs/supervisor
+#mkdir -p /config/logs/supervisor
 
-touch /supervisord.log
-touch /supervisord.pid
-chown plex: /supervisord.log /supervisord.pid
+#touch /supervisord.log
+#touch /supervisord.pid
+#chown plex: /supervisord.log /supervisord.pid
 
 # Get the proper group membership, credit to http://stackoverflow.com/a/28596874/249107
 
-TARGET_GID=$(stat -c "%g" /data)
-EXISTS=$(cat /etc/group | grep ${TARGET_GID} | wc -l)
+#TARGET_GID=$(stat -c "%g" /data)
+#EXISTS=$(cat /etc/group | grep ${TARGET_GID} | wc -l)
 
 # Create new group using target GID and add plex user
-if [ $EXISTS = "0" ]; then
-  groupadd --gid ${TARGET_GID} ${GROUP}
-else
+#if [ $EXISTS = "0" ]; then
+#  groupadd --gid ${TARGET_GID} ${GROUP}
+#else
   # GID exists, find group name and add
-  GROUP=$(getent group $TARGET_GID | cut -d: -f1)
-  usermod -a -G ${GROUP} plex
-fi
+#  GROUP=$(getent group $TARGET_GID | cut -d: -f1)
+#  usermod -a -G ${GROUP} plex
+#fi
 
-usermod -a -G ${GROUP} plex
+#usermod -a -G ${GROUP} -d /config plex
 
-if [[ -z "${SKIP_CHOWN_CONFIG}" ]]; then
-  CHANGE_CONFIG_DIR_OWNERSHIP=false
-fi
+#if [[ -z "${SKIP_CHOWN_CONFIG}" ]]; then
+#  CHANGE_CONFIG_DIR_OWNERSHIP=false
+#fi
 
-if [ "${CHANGE_CONFIG_DIR_OWNERSHIP}" = true ]; then
-  find /config ! -user plex -print0 | xargs -0 -I{} chown -R plex: {}
-fi
+#if [ "${CHANGE_CONFIG_DIR_OWNERSHIP}" = true ]; then
+#  find /config ! -user plex -print0 | xargs -0 -I{} chown -R plex: {}
+#fi
 
 # Will change all files in directory to be readable by group
-if [ "${CHANGE_DIR_RIGHTS}" = true ]; then
-  chgrp -R ${GROUP} /data
-  chmod -R g+rX /data
-fi
+#if [ "${CHANGE_DIR_RIGHTS}" = true ]; then
+#  chgrp -R ${GROUP} /data
+#  chmod -R g+rX /data
+#fi
 
+exec /sbin/setuser root /usr/sbin/start_pms
 # Current defaults to run as root while testing.
-if [ "${RUN_AS_ROOT}" = true ]; then
-  /usr/sbin/start_pms
-else
-  sudo -u plex -E sh -c "/usr/sbin/start_pms"
-fi
+#if [ "${RUN_AS_ROOT}" = true ]; then
+#  /usr/sbin/start_pms
+#else
+#  sudo -u plex -E sh -c "/usr/sbin/start_pms"
+#fi
 

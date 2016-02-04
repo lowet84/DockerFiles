@@ -14,8 +14,9 @@ RUN ./plexupdate.sh -p -a
 
 VOLUME ["/config","/data"]
 
-ADD ./start.sh /start.sh
-RUN chmod u+x  /start.sh
+RUN mkdir /etc/service/plex
+ADD start.sh /etc/service/plex/run
+RUN chmod +x /etc/service/plex/run
 
 ENV RUN_AS_ROOT="true" \
     CHANGE_DIR_RIGHTS="false" \
@@ -24,4 +25,4 @@ ENV RUN_AS_ROOT="true" \
 
 EXPOSE 32400
 
-CMD ["/start.sh"]
+CMD ["/sbin/my_init"]

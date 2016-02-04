@@ -8,13 +8,14 @@ RUN apt-get update && apt-get install -y libfuse2 samba && \
 
 ADD libunrar.so /usr/lib/
 ADD rar2fs /usr/bin/
-ADD start.sh /start.sh
 ADD smb.conf /etc/samba/smb.conf
 
 RUN mkdir /update && mkdir /rar2fs
 ADD mount.sh /update/mount.sh
 
-RUN chmod u+x /start.sh
+RUN mkdir /etc/service/filehub
+ADD start.sh /etc/service/filehub/run
+RUN chmod +x /etc/service/filehub/run
 
 VOLUME ["/config"]
 
@@ -23,4 +24,4 @@ ENV RUN_AS_ROOT="true" \
     CHANGE_CONFIG_DIR_OWNERSHIP="true" \
     HOME="/config"
 
-CMD ["/start.sh"]
+CMD ["/sbin/my_init"]
