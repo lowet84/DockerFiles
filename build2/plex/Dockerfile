@@ -18,7 +18,7 @@ RUN chmod + /update/plexupdate.sh
 WORKDIR /update
 RUN ./plexupdate.sh -p -a
 
-VOLUME ["/config","/data","/transcode"]
+VOLUME ["/config","/data"]
 
 ADD ./start.sh /start.sh
 RUN chmod u+x  /start.sh
