@@ -25,3 +25,9 @@ cd ..
 cd sonarr
 sh build.sh
 cd ..
+
+cd deluge 
+sh build.sh
+cd ..
+
+
