@@ -11,8 +11,9 @@ RUN mkdir /update
 ADD update.sh /update/update.sh
 ADD mount.sh /update/mount.sh
 
-ADD ./start.sh /start.sh
-RUN chmod u+x  /start.sh
+RUN mkdir /etc/service/sonarr
+ADD start.sh /etc/service/sonarr/run
+RUN chmod +x /etc/service/sonarr/run
 
 EXPOSE 8989
 EXPOSE 9898
@@ -25,4 +26,4 @@ ENV RUN_AS_ROOT="true" \
 
 WORKDIR /update
 RUN sh update.sh
-CMD ["/start.sh"]
+CMD ["/sbin/my_init"]
