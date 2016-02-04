@@ -1,4 +1,4 @@
-FROM ubuntu:15.10
+FROM phusion/baseimage
 
 RUN apt-get update && apt-get install -y libfuse2 samba && \
     apt-get -y autoremove && \
