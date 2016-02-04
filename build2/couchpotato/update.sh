@@ -12,6 +12,6 @@ else
   wget $DOWNLOADURL -O couchpotato.tar.gz
   touch version_$VERSION
   mkdir -p /opt/couchpotato
-  tar couchpotato.tar.gz -C /opt/couchpotato -zx --strip-components 1
+  tar -xvf couchpotato.tar.gz -C /opt/couchpotato --strip-components 1
   rm couchpotato.tar.gz
 fi
