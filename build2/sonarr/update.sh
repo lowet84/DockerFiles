@@ -9,7 +9,7 @@ then
 else
   echo "downloading latest version"
   echo $DOWNLOADURL
-  wget $DOWNLOADURL
+  wget $DOWNLOADURL -O sonarr.zip
   touch version_$VERSION
   unzip sonarr.zip -d /opt/NzbDrone/
   rm sonarr.zip 
