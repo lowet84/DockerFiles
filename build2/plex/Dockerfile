@@ -1,11 +1,5 @@
-FROM ubuntu:15.10
+FROM lowet84/sambabase
 MAINTAINER Fredrik Löwenhamn <fredrik.lowenhamn@gmail.com>
-
-RUN apt-get update && apt-get install -y wget cifs-utils && \ 
-    apt-get -y autoremove && \
-    apt-get -y clean && \
-    rm -rf /var/lib/apt/lists/* && \
-    rm -rf /tmp/*
 
 RUN mkdir /update 
 ADD plexupdate.sh /update/plexupdate.sh

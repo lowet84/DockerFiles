@@ -1,2 +1,2 @@
-docker rm -f lowet84/filehub
+docker rmi -f lowet84/filehub
 docker build -t lowet84/filehub .
