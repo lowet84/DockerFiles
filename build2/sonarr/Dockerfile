@@ -1,7 +1,7 @@
 FROM lowet84/mono
 MAINTAINER Fredrik Löwenhamn <fredrik.lowenhamn@gmail.com>
 
-RUN apt-get update && apt-get install -y curl unzip && \ 
+RUN apt-get update && apt-get install -y curl libmediainfo0 unzip && \ 
     apt-get -y autoremove && \
     apt-get -y clean && \
     rm -rf /var/lib/apt/lists/* && \
