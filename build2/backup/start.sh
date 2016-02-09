@@ -19,9 +19,9 @@ mkdir /temp
 mkdir /temp2
 rsync -rtvpl /backup/ /temp
 cd /temp
-if tar vcfz /temp2/$FILENAME *
+if tar vcfz /backup/$FILENAME *
 cd /temp2
-rsync -ah --no-perms --no-owner --no-group --progress $FILENAME $FILEPATH
+#rsync -ah --no-perms --no-owner --no-group --progress $FILENAME $FILEPATH
 then
   echo "Succesfully created backup $FILEPATH"
 else
