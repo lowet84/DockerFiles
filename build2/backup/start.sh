@@ -9,14 +9,19 @@ else
 fi
 
 FILEDATE=$(date +"%Y-%m-%d_%H-%M-%S")
-FILEPATH=/mnt/$BACKUPPATH/docker_volume_backup_$FILEDATE.tar.gz
+FILENAME=docker_volume_backup_$FILEDATE.tar.gz
+FILEPATH=/mnt/$BACKUPPATH/$FILENAME
 echo "writing to $FILEPATH"
 
 rm -rf /temp
+rm -rf /temp2
 mkdir /temp
-rsync -rtpl /backup/ /temp
+mkdir /temp2
+rsync -rtvpl /backup/ /temp
 cd /temp
-if tar cfz $FILEPATH *
+if tar vcfz /temp2/$FILENAME *
+cd /temp2
+rsync -ah --no-perms --no-owner --no-group --progress $FILENAME $FILEPATH
 then
   echo "Succesfully created backup $FILEPATH"
 else
