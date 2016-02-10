@@ -6,9 +6,9 @@ SMBPASSWORD="<my_password>"
 
 if [ -d /mnt/$MOUNTPATH ]
 then
-  echo "core exists"
+  echo "$MOUNTPATH exists"
 else
-  echo "creating core"
+  echo "creating $MOUNTPATH"
   mkdir /mnt/$MOUNTPATH
 fi
 
