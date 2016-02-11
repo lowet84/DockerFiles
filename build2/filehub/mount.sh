@@ -4,6 +4,10 @@ FOLDER="<my_folder>"
 SMBUSER="<my_user>"
 SMBPASSWORD="<my_password>"
 
+if [ "$MOUNTPATH" == "<path>" ]; then
+  exit 1
+fi
+
 if [ -d /mnt/$MOUNTPATH ]
 then
   echo "$MOUNTPATH exists"

@@ -1,7 +1,7 @@
 <html>
   <head>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
-    <title>Docker nginx Tutorial</title>
+    <title>Mediaserver tutorial</title>
   </head>
   <body>
     <div class="container">
@@ -9,18 +9,23 @@
         <div>      
           <a href="/web" onclick="javascript:event.target.port=32400">Plex</a>
         </div>
+	<div>The mounted folders in plex will be available under /mnt/</div>
         <div>
           <a href="/" onclick="javascript:event.target.port=5050">Couchpotato</a>
         </div>
+	<div>The mounted folders in plex will be available under /mnt/ and the Deluge service will be availble at host: deluge:58846 using username: deluge and password: deluge. Use directory /mnt/your_folder/Film etc. to download to the right location.</div>
         <div>
           <a href="/" onclick="javascript:event.target.port=8989">Sonarr</a>
         </div>
+	<div>The mounted folders in plex will be available under /mnt/, deluge is available at host: deluge and use the password from the Deluge web ui.</div>
         <div>
           <a href="/" onclick="javascript:event.target.port=8112">Deluge</a>
         </div>
+	<div>Default password is deluge. It is important to change the following two settings: Enable the Label plugin under Preferences/Plugins and enable Allow Remote Connections under Preferences/Daemon</div>
         <div>
           <a href="/" onclick="javascript:event.target.port=9117">Jackett</a>
         </div>
+	Jackett can be used in Sonarr and Couchpotato, add it as Torznab or TorrentPotato
     </div>
   </body>
 </html>
