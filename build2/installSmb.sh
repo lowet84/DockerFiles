@@ -5,7 +5,7 @@ NETWORK="lowet84-mediaserver"
 echo "Enter volumes directory (default is /volumes), no trailing /"
 read VOLUMES
 if [ -z $VOLUMES ]
-then 
+then
   VOLUMES="/volumes"
 fi
 
@@ -21,7 +21,7 @@ echo "installing filhub"
 docker rm -f filehub
 docker run --restart=always -d --name filehub --net=$NETWORK --privileged -it -v $VOLUMES/filehub:/config lowet84/filehub
 
-echo "SMB server will use the following command:" 
+echo "SMB server will use the following command:"
 echo 'mount -t cifs //$SERVER/$FOLDER /mnt/$MOUNTPATH -o username=$SMBUSER,password=$SMBPASSWORD'
 echo ""
 echo 'Enter IP/name of smb server ($SERVER)'
@@ -46,7 +46,6 @@ sed -i -- 's/<my_server>/'$SMBSERVER'/g' $VOLUMES/filehub/mount.sh
 sed -i -- 's/<my_user>/'$SMBUSER'/g' $VOLUMES/filehub/mount.sh
 sed -i -- 's/<my_password>/'$SMBPASS'/g' $VOLUMES/filehub/mount.sh
 sed -i -- 's/<path>/'$MNTFOLDER'/g' $VOLUMES/filehub/mount.sh
-
 echo "installing Plex Media Server"
 docker rm -f plex
 docker run --privileged --restart=always --name plex -d --net=$NETWORK -it -v $VOLUMES/plex:/root -p 32400:32400 lowet84/plex
