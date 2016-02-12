@@ -1,0 +1,8 @@
+#cloud-config
+
+ users:
+  - name: fredrik
+    passwd: replace-this
+    groups:
+      - sudo
+      - docker
