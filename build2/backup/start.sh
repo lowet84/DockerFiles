@@ -1,12 +1,12 @@
 #!/bin/bash
 
-if sh /update/mount.sh
-then
-  echo "Mount script run successfully"
-else
-  echo "Mount script failed, shutting down..."
-  exit 1
-fi
+#if sh /update/mount.sh
+#then
+#  echo "Mount script run successfully"
+#else
+#  echo "Mount script failed, shutting down..."
+#  exit 1
+#fi
 
 FILEDATE=$(date +"%Y-%m-%d_%H-%M-%S")
 FILENAME=docker_volume_backup_$FILEDATE.tar.gz
@@ -29,3 +29,6 @@ else
 fi
 cd /
 rm -rf /temp
+read -p "Press any key to exit" x
+rm -rf /temp2
+
