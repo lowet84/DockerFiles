@@ -6,6 +6,9 @@ function handle_signal {
   kill -s SIGHUP $PID
 }
 
+cd /update
+sh update.sh
+
 trap "handle_signal" SIGINT SIGTERM SIGHUP
 
 echo "starting jackett"

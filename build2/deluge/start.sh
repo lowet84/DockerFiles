@@ -7,6 +7,8 @@ else
   exit 1
 fi
 
+sh /update/rar2fs.sh
+
 if [ -f /config/auth ]
 then
   echo "auth exists, does nothing"

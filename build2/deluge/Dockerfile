@@ -1,8 +1,8 @@
-FROM lowet84/sambabase
+FROM lowet84/rar2fsbase
 MAINTAINER Fredrik Löwenhamn <fredrik.lowenhamn@gmail.com>
 
 VOLUME ["/config","/data"]
-RUN mkdir /update
+RUN mkdir -p /update
 ADD mount.sh /update/mount.sh
 
 RUN add-apt-repository ppa:deluge-team/ppa

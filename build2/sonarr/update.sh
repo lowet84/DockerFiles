@@ -1,7 +1,7 @@
 #!/bin/bash
 
-VERSION=$(curl -s https://api.github.com/repos/lowet84/SonarrBranch/releases/latest | grep 'tag_name' | cut -d\" -f4)
-DOWNLOADURL=$(curl -s https://api.github.com/repos/lowet84/SonarrBranch/releases/latest | grep 'browser_' | cut -d\" -f4)
+VERSION=$(curl -s https://api.github.com/repos/lowet84/Sonarr/releases/latest | grep 'tag_name' | cut -d\" -f4)
+DOWNLOADURL=$(curl -s https://api.github.com/repos/lowet84/Sonarr/releases/latest | grep 'browser_' | cut -d\" -f4)
 ls
 if [ -f version_$VERSION ]
 then
