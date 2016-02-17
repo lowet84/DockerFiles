@@ -1,12 +1,10 @@
-FROM lowet84/sambabase
+FROM lowet84/rar2fsbase
 MAINTAINER Fredrik Löwenhamn <fredrik.lowenhamn@gmail.com>
 
-RUN mkdir /update 
+RUN mkdir -p /update 
 ADD plexupdate.sh /update/plexupdate.sh
 ADD Preferences.xml /update/Preferences.xml
 ADD mount.sh /update/mount.sh
-#ADD libunrar.so /usr/lib
-#ADD rar2fs /usr/bin
 
 RUN chmod + /update/plexupdate.sh
 WORKDIR /update
