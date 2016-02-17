@@ -11,6 +11,7 @@ fi
 #update
 cd /update
 sh update.sh
+sh rar2fs.sh
 
 function handle_signal {
   PID=$!

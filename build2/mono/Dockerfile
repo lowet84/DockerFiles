@@ -1,4 +1,4 @@
-FROM lowet84/sambabase
+FROM lowet84/rar2fsbase
 MAINTAINER Fredrik Löwenhamn <fredrik.lowenhamn@gmail.com>
 
 RUN apt-get update && apt-get install -y mono-devel && \
