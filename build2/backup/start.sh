@@ -1,12 +1,17 @@
 #!/bin/bash
 
-#if sh /update/mount.sh
-#then
-#  echo "Mount script run successfully"
-#else
-#  echo "Mount script failed, shutting down..."
-#  exit 1
-#fi
+if [ -f /backup/mount.sh ]
+then
+  cp /backup/mount.sh /update/mount.sh
+fi
+ 
+if sh /update/mount.sh
+then
+  echo "Mount script run successfully"
+else
+  echo "Mount script failed, shutting down..."
+  exit 1
+fi
 
 FILEDATE=$(date +"%Y-%m-%d_%H-%M-%S")
 FILENAME=docker_volume_backup_$FILEDATE.tar.gz
@@ -19,7 +24,7 @@ mkdir /temp
 mkdir /temp2
 cp -r /backup/ /temp
 cd /temp
-if tar vcfz /backup/$FILENAME *
+if tar vcfz /temp2/$FILENAME *
 cd /temp2
 rsync -ah --no-perms --no-owner --no-group --progress $FILENAME $FILEPATH
 then
@@ -29,6 +34,5 @@ else
 fi
 cd /
 rm -rf /temp
-read -p "Press any key to exit" x
 rm -rf /temp2
 
