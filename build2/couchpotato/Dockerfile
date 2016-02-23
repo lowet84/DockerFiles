@@ -1,4 +1,4 @@
-FROM lowet84/sambabase
+FROM lowet84/rar2fsbase
 MAINTAINER Fredrik Löwenhamn <fredrik.lowenhamn@gmail.com>
 
 RUN apt-get update && apt-get install -y curl python && \ 
@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -y curl python && \
     rm -rf /var/lib/apt/lists/* && \
     rm -rf /tmp/*
 
-RUN mkdir /update
+RUN mkdir -p /update
 ADD update.sh /update/update.sh
 ADD mount.sh /update/mount.sh
 
