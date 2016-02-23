@@ -8,6 +8,8 @@ else
   exit 1
 fi
 
+sh /update/rar2fs.sh
+
 #update
 cd /update
 sh update.sh
