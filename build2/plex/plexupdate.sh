@@ -65,8 +65,8 @@ if [ $? -eq 127 ]; then
 fi
 
 # Load settings from config file if it exists
-if [ -f /config/.plexupdate ]; then
-	source /config/.plexupdate
+if [ -f /root/.plexupdate ]; then
+	source /root/.plexupdate
 fi
 
 # Current pages we need - Do not change unless Plex.tv changes again
