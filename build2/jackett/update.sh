@@ -11,6 +11,6 @@ else
   echo $DOWNLOADURL
   wget $DOWNLOADURL -O jackett.zip
   touch version_$VERSION
-  unzip jackett.zip -d /opt/
+  unzip -o jackett.zip -d /opt/
   rm jackett.zip 
 fi

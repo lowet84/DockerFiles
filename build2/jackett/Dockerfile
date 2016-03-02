@@ -7,10 +7,10 @@ RUN apt-get update && apt-get install -y curl libcurl3 unzip && \
     rm -rf /var/lib/apt/lists/* && \
     rm -rf /tmp/*
 
-RUN mkdir /update
+RUN mkdir -p /update
 ADD update.sh /update/update.sh
 
-RUN mkdir /etc/service/jackett
+RUN mkdir -p /etc/service/jackett
 ADD start.sh /etc/service/jackett/run
 RUN chmod +x /etc/service/jackett/run
 
