@@ -1,7 +1,7 @@
 #!/bin/bash
 
-VERSION=$(curl -s https://api.github.com/repos/Jackett/Jackett/releases/latest | grep 'tag_name' | cut -d\" -f4)
-DOWNLOADURL=$(curl -s https://api.github.com/repos/Jackett/Jackett/releases/latest | grep 'browser_.*Binaries.Windows.zip' | cut -d\" -f4)
+VERSION=$(curl -s https://api.github.com/repos/lowet84/Jackett/releases/latest | grep 'tag_name' | cut -d\" -f4)
+DOWNLOADURL=$(curl -s https://api.github.com/repos/lowet84/Jackett/releases/latest | grep 'browser_download_url.*Jackett\.zip' | cut -d\" -f4)
 ls
 if [ -f version_$VERSION ]
 then

@@ -1,1 +1,1 @@
-docker build --no-cache -t lowet84/jackett .
+docker build -t lowet84/jackett .
