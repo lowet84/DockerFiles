@@ -56,5 +56,17 @@ services:
     restart: always
     networks:
       - mediaserver
+  nginx:
+    image: lowet84/nginx-mediaserver
+    ports:
+      - 80:80
+    restart: always
+    networks:
+      - mediaserver
+  watchtower:
+    image: centurylink/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: always
 networks:
   mediaserver:
