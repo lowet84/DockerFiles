@@ -2,7 +2,7 @@
 
 if [ -f /backup/mount.sh ]
 then
-  cp /backup/mount.sh /update/mount.sh
+  cp /backup/mediaserver/mount.sh /update/mount.sh
 fi
  
 if sh /update/mount.sh
@@ -22,7 +22,7 @@ rm -rf /temp
 rm -rf /temp2
 mkdir /temp
 mkdir /temp2
-cp -r /backup/ /temp
+cp -rv /backup/ /temp
 cd /temp
 if tar vcfz /temp2/$FILENAME *
 cd /temp2
