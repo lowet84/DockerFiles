@@ -1,8 +1,8 @@
 docker rm -f guacamole
 docker rm -f guacd
 
-docker run --name guacd -d --restart=always glyptodon/guacd
-docker run --name guacamole --link guacd:guacd \
+docker run --name guacd1 -d --restart=always glyptodon/guacd
+docker run --name guacamole --link guacd1:guacd \
     --link mysql:mysql         \
     -e MYSQL_DATABASE=guacamole_db  \
     -e MYSQL_USER=guacamole_user    \
