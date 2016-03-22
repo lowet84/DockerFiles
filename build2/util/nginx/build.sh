@@ -1,1 +1,1 @@
-docker build --no-cache -t lowet84/nginx-mediaserver .
+docker build -t lowet84/nginx-mediaserver .

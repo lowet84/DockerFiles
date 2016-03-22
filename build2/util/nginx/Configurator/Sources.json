@@ -1,0 +1,27 @@
+﻿[
+  {
+    "name": "plex",
+    "port": 32400,
+    "path": "web"
+  },
+  {
+    "name": "deluge",
+    "port": 8112,
+    "path": ""
+  },
+  {
+    "name": "jackett",
+    "port": 9117,
+    "path": ""
+  },
+  {
+    "name": "couchpotato",
+    "port": 5050,
+    "path": ""
+  },
+  {
+    "name": "sonarr",
+    "port": 8989,
+    "path": ""
+  }
+]
