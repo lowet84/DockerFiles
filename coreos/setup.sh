@@ -5,4 +5,4 @@ USER=$1
 
 sed -i -- 's/replace-this/'$PASSKEY'/g' cloud-config-file
 sed -i -- 's/coreos/'$USER'/g' cloud-config-file
-sudo coreos-install -d /dev/sda -C stable -c cloud-config-file
+sudo coreos-install -d /dev/vda -C stable -c cloud-config-file
