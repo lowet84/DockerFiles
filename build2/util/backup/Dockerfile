@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y rsync && \
     rm -rf /tmp/*
 
 ADD mount.sh /update/mount.sh
+ADD restore.sh /update/restore.sh
 ADD start.sh /start.sh
 RUN chmod +x /start.sh
 
