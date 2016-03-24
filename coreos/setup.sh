@@ -4,5 +4,5 @@ PASSKEY=$(openssl passwd -1)
 USER=$1
 
 sed -i -- 's/replace-this/'$PASSKEY'/g' cloud-config-file
-sed -i -- 's/coreos/'$PASSKEY'/g' cloud-config-file
+sed -i -- 's/coreos/'$USER'/g' cloud-config-file
 sudo coreos-install -d /dev/sda -C stable -c cloud-config-file
