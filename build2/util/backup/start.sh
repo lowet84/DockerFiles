@@ -1,10 +1,10 @@
 #!/bin/bash
 
-if [ -f /backup/mount.sh ]
+if [ -f /backup/mediaserver/mount.sh ]
 then
   cp /backup/mediaserver/mount.sh /update/mount.sh
 fi
- 
+
 if sh /update/mount.sh
 then
   echo "Mount script run successfully"
@@ -35,4 +35,3 @@ fi
 cd /
 rm -rf /temp
 rm -rf /temp2
-
