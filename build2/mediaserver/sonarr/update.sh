@@ -11,6 +11,6 @@ else
   echo $DOWNLOADURL
   wget $DOWNLOADURL -O sonarr.zip
   touch version_$VERSION
-  unzip sonarr.zip -d /opt/NzbDrone/
+  unzip -o sonarr.zip -d /opt/NzbDrone/
   rm sonarr.zip 
 fi
