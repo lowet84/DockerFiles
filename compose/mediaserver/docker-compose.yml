@@ -1,92 +1,94 @@
-# Mediaserver
-plex:
-  image: lowet84/plex
-  privileged: true
-  volumes:
-    - /volumes/mediaserver/plex:/root
-    - /volumes/mediaserver/mount.sh:/update/mount.sh
-  ports:
-    - 32400:32400
-  restart: always
+version: '2'
+services:
+  # Mediaserver
+  plex:
+    image: lowet84/plex
+    privileged: true
+    volumes:
+      - /volumes/mediaserver/plex:/root
+      - /volumes/mediaserver/mount.sh:/update/mount.sh
+    ports:
+      - 32400:32400
+    restart: always
 
-sonarr:
-  image: lowet84/sonarr
-  privileged: true
-  volumes:
-    - /volumes/mediaserver/sonarr:/config
-    - /volumes/mediaserver/mount.sh:/update/mount.sh
-  ports:
-    - 8989:8989
-    - 9898:9898
-  restart: always
+  sonarr:
+    image: lowet84/sonarr
+    privileged: true
+    volumes:
+      - /volumes/mediaserver/sonarr:/config
+      - /volumes/mediaserver/mount.sh:/update/mount.sh
+    ports:
+      - 8989:8989
+      - 9898:9898
+    restart: always
 
-jackett:
-  image: lowet84/jackett
-  volumes:
-    - /volumes/mediaserver/jackett:/root/.config/Jackett
-  ports:
-    - 9117:9117
-  restart: always
-  environment:
-    JACKETT_KEY: d7nc8w37y4mc9348u9q83mqv
+  jackett:
+    image: lowet84/jackett
+    volumes:
+      - /volumes/mediaserver/jackett:/root/.config/Jackett
+    ports:
+      - 9117:9117
+    restart: always
+    environment:
+      JACKETT_KEY: d7nc8w37y4mc9348u9q83mqv
 
-deluge:
-  image: lowet84/deluge
-  privileged: true
-  volumes:
-    - /volumes/mediaserver/deluge:/config
-    - /volumes/mediaserver/mount.sh:/update/mount.sh
-  ports:
-    - 8112:8112
-  restart: always
+  deluge:
+    image: lowet84/deluge
+    privileged: true
+    volumes:
+      - /volumes/mediaserver/deluge:/config
+      - /volumes/mediaserver/mount.sh:/update/mount.sh
+    ports:
+      - 8112:8112
+    restart: always
 
-couchpotato:
-  image: lowet84/couchpotato
-  privileged: true
-  volumes:
-    - /volumes/mediaserver/couchpotato:/config
-    - /volumes/mediaserver/mount.sh:/update/mount.sh
-  ports:
-    - 5050:5050
-  restart: always
+  couchpotato:
+    image: lowet84/couchpotato
+    privileged: true
+    volumes:
+      - /volumes/mediaserver/couchpotato:/config
+      - /volumes/mediaserver/mount.sh:/update/mount.sh
+    ports:
+      - 5050:5050
+    restart: always
 
-# Utils
-nginx:
-  image: lowet84/nginx-mediaserver
-  ports:
-    - 80:80
-  restart: always
+  # Utils
+  nginx:
+    image: lowet84/nginx-mediaserver
+    ports:
+      - 80:80
+    restart: always
+  
+  watchtower:
+    image: centurylink/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: always
 
-watchtower:
-  image: centurylink/watchtower
-  volumes:
-    - /var/run/docker.sock:/var/run/docker.sock
-  restart: always
+  mysql:
+    image: mysql
+    ports:
+      - 3306:3306
+    restart: always
+    volumes:
+      - /volumes/util/mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: gurkburk
 
-mysql:
-  image: mysql
-  ports:
-    - 3306:3306
-  restart: always
-  volumes:
-    - /volumes/util/mysql:/var/lib/mysql
-  environment:
-    MYSQL_ROOT_PASSWORD: gurkburk
+  # Guacamole
+  guacd:
+    image: glyptodon/guacd
+    restart: always
 
-# Guacamole
-guacd:
-  image: glyptodon/guacd
-  restart: always
-
-guacamole:
-  image: glyptodon/guacamole
-  ports:
-    - 8080:8080
-  restart: always
-  environment:
-    MYSQL_DATABASE: guacamole_db
-    MYSQL_USER: guacamole_user
-    MYSQL_PASSWORD: guacamole_password
-    MYSQL_HOSTNAME: mysql
-    GUACD_PORT_4822_TCP_ADDR: guacd
-    GUACD_PORT_4822_TCP_PORT: 4822
+  guacamole:
+    image: glyptodon/guacamole
+    ports:
+      - 8080:8080
+    restart: always
+    environment:
+      MYSQL_DATABASE: guacamole_db
+      MYSQL_USER: guacamole_user
+      MYSQL_PASSWORD: guacamole_password
+      MYSQL_HOSTNAME: mysql
+      GUACD_PORT_4822_TCP_ADDR: guacd
+      GUACD_PORT_4822_TCP_PORT: 4822
