@@ -1,8 +1,8 @@
 #cloud-config
 
  users:
-  - name: coreos
-    passwd: replace-this
+  - name: fredrik
+    passwd: $1$KLwYsYaa$vB1isfvTfSuR09q7wixQ60
     groups:
       - sudo
       - docker
