@@ -1,0 +1,11 @@
+version: '2'
+services:
+  sync:
+    image: bittorrent/sync
+    volumes:
+      - /volumes/sync/:/mnt/sync
+      - /volumes/:/mnt/mounted_folders/volumes
+    ports:
+      - 8888:8888
+      - 55555:55555
+    restart: always
