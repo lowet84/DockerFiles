@@ -1,7 +1,7 @@
 version: '2'
 services:
   sync:
-    image: bittorrent/sync
+    image: ctlc/btsync
     volumes:
       - /volumes/sync/:/mnt/sync
       - /volumes/:/mnt/mounted_folders/volumes
