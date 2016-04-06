@@ -1,0 +1,28 @@
+version: '2'
+services:
+  mysql:
+    image: mysql
+    ports:
+      - 3306:3306
+    restart: always
+    volumes:
+      - /volumes/util/mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: gurkburk
+
+  guacd:
+    image: glyptodon/guacd
+    restart: always
+
+  guacamole:
+    image: glyptodon/guacamole
+    ports:
+      - 8080:8080
+    restart: always
+    environment:
+      MYSQL_DATABASE: guacamole_db
+      MYSQL_USER: guacamole_user
+      MYSQL_PASSWORD: guacamole_password
+      MYSQL_HOSTNAME: mysql
+      GUACD_PORT_4822_TCP_ADDR: guacd
+      GUACD_PORT_4822_TCP_PORT: 4822
