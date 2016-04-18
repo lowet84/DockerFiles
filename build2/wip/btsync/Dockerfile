@@ -5,6 +5,7 @@ RUN curl -o /usr/bin/btsync.tar.gz http://download-lb.utorrent.com/endpoint/btsy
 RUN cd /usr/bin && tar -xzvf btsync.tar.gz && rm btsync.tar.gz
 RUN mkdir -p /btsync/.sync
 RUN mkdir -p /var/run/btsync
+RUN mkdir -p /data
 EXPOSE 8888
 EXPOSE 55555
 ADD start-btsync /usr/bin/start-btsync

@@ -1,7 +1,12 @@
-#if ! mount -t cifs //filehub/raw /mnt/ -o guest
-#then
-#  echo "could not connect to filehub"
-#  exit 1
-#fi
+if [ -d /mnt/$MOUNTPATH ]
+then
+  echo "core exists"
+else
+  echo "creating core"
+  mkdir /mnt/$MOUNTPATH
+fi
 
-echo "No mounting script run"
+if ! mount -t cifs //$SERVER/$FOLDER /mnt/$MOUNTPATH -o username=$SMBUSER,password=$SMBPASSWORD
+then
+  exit 1
+fi

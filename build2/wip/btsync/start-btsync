@@ -2,10 +2,6 @@
 SECRET=$SECRET_KEY
 : ${SECRET:=`btsync --generate-secret`}
 
-if [ ! -d "{$DATA_FOLDER}" ]; then
-    mkdir -p $DATA_FOLDER
-fi
-
 echo "Starting btsync with secret: $SECRET"
 
 echo "{
@@ -20,7 +16,7 @@ echo "{
     \"shared_folders\": [
         {
             \"secret\": \"$SECRET\",
-            \"dir\": \"$DATA_FOLDER\",
+            \"dir\": \"/data\",
             \"use_relay_server\": true,
             \"use_tracker\": true,
             \"use_dht\": false,

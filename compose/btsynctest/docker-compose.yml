@@ -1,39 +1,10 @@
 version: '2'
 services:
-  jackett_data:
+  btsync-test:
     image: lowet84/btsync
     restart: always
     volumes:
-      - /volumes/jackett:/root/.config/Jackett
+      - /volumes/jackett:/data
     environment:
-      DATA_FOLDER: /root/.config/Jackett
-      SECRET_KEY: A5KFEISIZ5UN5SDFCVCEDGOLXRASVEPEJ
+      SECRET_KEY: A2Y5XXPAHBF6PJEHFWXNLLLGW4PSCVZUG
 
-  jackett:
-    image: lowet84/jackett
-    restart: always
-    volumes_from:
-      - jackett_data
-    ports: 
-      - 9117:9117
-    environment:
-      JACKETT_KEY: d7nc8w37y4mc9348u9q83mqv
-
-  jackett_data2:
-    image: lowet84/btsync
-    restart: always
-    volumes:
-      - /volumes/test:/root/.config/Jackett
-    environment:
-      DATA_FOLDER: /root/.config/Jackett
-      SECRET_KEY: A5KFEISIZ5UN5SDFCVCEDGOLXRASVEPEJ
-
-  jackett2:
-    image: lowet84/jackett
-    restart: always
-    volumes_from:
-      - jackett_data2
-    ports:
-      - 9118:9117
-    environment:
-      JACKETT_KEY: d7nc8w37y4mc9348u9q83mqv
