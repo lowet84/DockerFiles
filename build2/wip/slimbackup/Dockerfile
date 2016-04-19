@@ -4,6 +4,7 @@ RUN mkdir -p /backup
 RUN mkdir -p /data
 
 COPY backup.sh /backup/backup.sh
+COPY restore.sh /backup/restore.sh
 COPY mount.sh /backup/mount.sh
 COPY start.sh /backup/start.sh
 
