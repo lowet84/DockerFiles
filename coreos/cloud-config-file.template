@@ -6,13 +6,3 @@
     groups:
       - sudo
       - docker
- units:
-  - name: runcmd.service
-    command: start
-    content: |
-      [Unit]
-      Description=Downloading and installing netshare
-
-      [Service]
-      Type=oneshot
-      ExecStart=/bin/sh -c "cd /root && wget https://github.com/gondor/docker-volume-netshare/releases/download/v0.16/docker-volume-netshare_0.16_linux_amd64.tar.gz -O netshare.tar.gz && tar xvf netshare.tar.gz"
