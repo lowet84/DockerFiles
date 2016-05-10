@@ -17,7 +17,6 @@ RUN chmod +x /etc/service/sonarr/run
 
 EXPOSE 8989
 EXPOSE 9898
-VOLUME ["/config","/data"]
 
 ENV RUN_AS_ROOT="true" \
     CHANGE_DIR_RIGHTS="false" \

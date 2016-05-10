@@ -10,7 +10,7 @@ RUN chmod + /update/plexupdate.sh
 WORKDIR /update
 RUN ./plexupdate.sh -p -a
 
-VOLUME ["/config","/data"]
+VOLUME ["/root/Library"]
 
 RUN mkdir /etc/service/plex
 ADD start.sh /etc/service/plex/run
@@ -19,7 +19,8 @@ RUN chmod +x /etc/service/plex/run
 ENV RUN_AS_ROOT="true" \
     CHANGE_DIR_RIGHTS="false" \
     CHANGE_CONFIG_DIR_OWNERSHIP="true" \
-    HOME="/config"
+    HOME="/config" \
+    USEMOUNT="true"
 
 EXPOSE 32400
 

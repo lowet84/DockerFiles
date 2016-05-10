@@ -1,7 +1,6 @@
 FROM lowet84/rar2fsbase
 MAINTAINER Fredrik Löwenhamn <fredrik.lowenhamn@gmail.com>
 
-VOLUME ["/config","/data"]
 RUN mkdir -p /update
 ADD mount.sh /update/mount.sh
 

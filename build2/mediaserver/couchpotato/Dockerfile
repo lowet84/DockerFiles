@@ -16,7 +16,6 @@ ADD start.sh /etc/service/couchpotato/run
 RUN chmod +x /etc/service/couchpotato/run
 
 EXPOSE 5050
-VOLUME ["/config","/data"]
 
 ENV RUN_AS_ROOT="true" \
     CHANGE_DIR_RIGHTS="false" \

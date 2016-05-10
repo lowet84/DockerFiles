@@ -8,12 +8,17 @@ else
   cp /update/Preferences.xml /root/Library/Application\ Support/Plex\ Media\ Server/Preferences.xml
 fi
 
-if sh /update/mount.sh
-then
-  echo "Mount script run successfully"
+echo "USEMOUNT=$USEMOUNT"
+if [ "$USEMOUNT" = true ]; then
+  if sh /update/mount.sh
+  then
+    echo "Mount script run successfully"
+  else
+    echo "Mount script failed, shutting down..."
+    exit 1
+  fi
 else
-  echo "Mount script failed, shutting down..."
-  exit 1
+  echo skipping mount
 fi
 
 sh /update/rar2fs.sh

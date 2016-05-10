@@ -2,7 +2,17 @@
 
 if [ ! -f "/data/initialized" ]; then
   echo "Initializing guacamole database"
-  mysql -h mysql -u root -pgurkburk < /initdb.sql
+  GO=1
+  while true; do 
+    mysql -h mysql -u root -p$PASSWORD < /initdb.sql
+    if [ $? -eq 0 ]; then
+      echo "Database initialized"
+      break
+    else
+      echo "Retrying in 10s"
+      sleep 10s
+    fi
+  done
   touch /data/initialized
 else
   echo "Guacamole db already initialized"
