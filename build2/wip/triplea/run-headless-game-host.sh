@@ -1,0 +1,2 @@
+cd $(dirname $0)
+java -server -Xmx256m -Djava.awt.headless=true -classpath bin/triplea.jar games.strategy.engine.framework.headlessGameServer.HeadlessGameServer triplea.game.host.console=true triplea.game.host.ui=false triplea.game= triplea.server=true triplea.port=3300 triplea.lobby.host=173.255.229.134 triplea.lobby.port=3303 triplea.name=Bot_Lowet triplea.lobby.game.hostedBy=Bot_Lowet triplea.lobby.game.supportEmail=lowet84@gmail.com triplea.lobby.game.comments="automated_host"

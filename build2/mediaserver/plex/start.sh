@@ -28,10 +28,10 @@ cd /update
 
 if [ -f /root/.plexupdate ]; then
   echo "Installing plex pass plex"
-  ./plexupdate.sh -a
+  curl https://raw.githubusercontent.com/mrworf/plexupdate/master/plexupdate.sh | bash -s -- -a
 else
   echo "Installing public plex"
-  ./plexupdate.sh -p -a
+  curl https://raw.githubusercontent.com/mrworf/plexupdate/master/plexupdate.sh | bash -s -- -p -a
 fi
 rm plexmediaserver*
 

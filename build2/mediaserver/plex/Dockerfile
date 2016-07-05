@@ -2,15 +2,16 @@ FROM lowet84/rar2fsbase
 MAINTAINER Fredrik Löwenhamn <fredrik.lowenhamn@gmail.com>
 
 RUN mkdir -p /update 
-ADD plexupdate.sh /update/plexupdate.sh
+#ADD plexupdate.sh /update/plexupdate.sh
 ADD Preferences.xml /update/Preferences.xml
 ADD mount.sh /update/mount.sh
 
-RUN chmod + /update/plexupdate.sh
+#RUN chmod + /update/plexupdate.sh
 WORKDIR /update
-RUN ./plexupdate.sh -p -a
+RUN curl https://raw.githubusercontent.com/mrworf/plexupdate/master/plexupdate.sh | bash -s -- -p -a
+#RUN ./plexupdate.sh -p -a
 
-VOLUME ["/root/Library"]
+#VOLUME ["/root/Library"]
 
 RUN mkdir /etc/service/plex
 ADD start.sh /etc/service/plex/run
