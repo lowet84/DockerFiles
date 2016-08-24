@@ -18,6 +18,11 @@ services:
     - sonarr:/config
     networks:
       - mediaserver
+    labels:
+      - traefik.backend=sonarr
+      - traefik.frontend.passHostHeader=true
+      - traefik.port=8989
+      - traefik.frontend.rule=Host:sonarr.${DOMAIN}
   
   plex:
     ports:
@@ -35,6 +40,11 @@ services:
     - plex:/root
     networks:
       - mediaserver
+    labels:
+      - traefik.backend=plex
+      - traefik.frontend.passHostHeader=true
+      - traefik.port=32400
+      - traefik.frontend.rule=Host:plex.${DOMAIN}
   
   jackett:
     ports:
@@ -49,6 +59,11 @@ services:
     - jackett:/root/.config/Jackett
     networks:
       - mediaserver
+    labels:
+      - traefik.backend=jackett
+      - traefik.frontend.passHostHeader=true
+      - traefik.port=9117
+      - traefik.frontend.rule=Host:jackett.${DOMAIN}
   
   deluge:
     ports:
@@ -67,6 +82,12 @@ services:
     - deluge:/config
     networks:
       - mediaserver
+    labels:
+      - traefik.backend=deluge
+      - traefik.frontend.passHostHeader=true
+      - traefik.port=8112
+      - traefik.frontend.rule=Host:deluge.${DOMAIN}
+
   
   traefik:
     image: lowet84\traefik
