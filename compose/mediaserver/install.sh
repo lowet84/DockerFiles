@@ -7,7 +7,9 @@ read server
 echo "Enter SMBUSER"
 read user
 echo "Enter SMBPASS"
+stty -echo
 read -s pass
+stty echo
 echo "Enter SMBFOLDER"
 read folder
 echo "Enter MNTPATH"
