@@ -1,66 +1,58 @@
-version: '2'
-services:
-  # Mediaserver
-  plex:
-    image: lowet84/plex
-    privileged: true
-    volumes:
-      - /volumes/mediaserver/plex:/root
-      - /volumes/mediaserver/mount.sh:/update/mount.sh
-    ports:
-      - 32400:32400
-    restart: always
+sonarr:
+  ports:
+  - 8989:8989/tcp
+  - 9898:9898/tcp
+  environment:
+    FOLDER: $SMBFOLDER
+    MOUNTPATH: $MNTPATH
+    SERVER: $SERVER
+    SMBPASSWORD: $SMBPASS
+    SMBUSER: $SMBUSER
+  tty: true
+  image: lowet84/sonarr
+  privileged: true
+  volumes:
+  - sonarr:/config
 
-  sonarr:
-    image: lowet84/sonarr
-    privileged: true
-    volumes:
-      - /volumes/mediaserver/sonarr:/config
-      - /volumes/mediaserver/mount.sh:/update/mount.sh
-    ports:
-      - 8989:8989
-      - 9898:9898
-    restart: always
+plex:
+  ports:
+  - 32400:32400/tcp
+  environment:
+    FOLDER: $SMBFOLDER
+    MOUNTPATH: $MNTPATH
+    SERVER: $SERVER
+    SMBPASSWORD: $SMBPASS
+    SMBUSER: $SMBUSER
+  tty: true
+  image: lowet84/plex
+  privileged: true
+  volumes:
+  - plex:/root
 
-  jackett:
-    image: lowet84/jackett
-    volumes:
-      - /volumes/mediaserver/jackett:/root/.config/Jackett
-    ports:
-      - 9117:9117
-    restart: always
-    environment:
-      JACKETT_KEY: d7nc8w37y4mc9348u9q83mqv
+jackett:
+  ports:
+  - 9117:9117/tcp
+  environment:
+    JACKETT_KEY: d7nc8w37y4mc9348u9q83mqv
+  labels:
+    io.rancher.container.pull_image: always
+  tty: true
+  image: lowet84/jackett
+  volumes:
+  - jackett:/root/.config/Jackett
 
-  deluge:
-    image: lowet84/deluge
-    privileged: true
-    volumes:
-      - /volumes/mediaserver/deluge:/config
-      - /volumes/mediaserver/mount.sh:/update/mount.sh
-    ports:
-      - 8112:8112
-    restart: always
-
-  couchpotato:
-    image: lowet84/couchpotato
-    privileged: true
-    volumes:
-      - /volumes/mediaserver/couchpotato:/config
-      - /volumes/mediaserver/mount.sh:/update/mount.sh
-    ports:
-      - 5050:5050
-    restart: always
-
-  # Utils
-  nginx:
-    image: lowet84/nginx-mediaserver
-    ports:
-      - 80:80
-    restart: always
-  
-  watchtower:
-    image: centurylink/watchtower
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    restart: always
+deluge:
+  ports:
+  - 53211:53211/tcp
+  - 8112:8112/tcp
+  environment:
+    FOLDER: $SMBFOLDER
+    MOUNTPATH: $MNTPATH
+    SERVER: $SERVER
+    SMBPASSWORD: $SMBPASS
+    SMBUSER: $SMBUSER
+  tty: true
+  image: lowet84/deluge
+  privileged: true
+  volumes:
+  - deluge:/config
