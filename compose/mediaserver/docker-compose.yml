@@ -23,6 +23,7 @@ services:
       - traefik.frontend.passHostHeader=true
       - traefik.port=8989
       - traefik.frontend.rule=Host:sonarr.${DOMAIN}
+    restart: always
   
   plex:
     ports:
@@ -45,6 +46,7 @@ services:
       - traefik.frontend.passHostHeader=true
       - traefik.port=32400
       - traefik.frontend.rule=Host:plex.${DOMAIN}
+    restart: always
   
   jackett:
     ports:
@@ -64,6 +66,7 @@ services:
       - traefik.frontend.passHostHeader=true
       - traefik.port=9117
       - traefik.frontend.rule=Host:jackett.${DOMAIN}
+    restart: always
   
   deluge:
     ports:
@@ -87,6 +90,7 @@ services:
       - traefik.frontend.passHostHeader=true
       - traefik.port=8112
       - traefik.frontend.rule=Host:deluge.${DOMAIN}
+    restart: always
 
   
   traefik:
