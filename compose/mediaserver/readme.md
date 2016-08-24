@@ -1,4 +1,5 @@
 Set environment variables first!
+export SOME_VARIABLE=something
 
 - DOMAIN - the domain you want to use for the mediaserver "mediaserver" gives "plex.mediaserver" etc.
 - SERVER - SMB server url/ip
