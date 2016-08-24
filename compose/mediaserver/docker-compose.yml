@@ -69,7 +69,7 @@ services:
       - mediaserver
   
   traefik:
-    image: traefik
+    image: lowet84\traefik
     restart: always
     ports:
       - 80:80
