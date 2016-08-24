@@ -77,6 +77,8 @@ services:
     volumes:
       - traefik:/etc/traefik
       - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - mediaserver
   
 networks:
   mediaserver:
