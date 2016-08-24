@@ -21,7 +21,7 @@ docker-compose up -d
 - set replace to: "/mnt/\<MNTPATH>/$1/{Name}"
 
 #Install script
-- download instll script using
+- download install script using
 ```
 wget goo.gl/dg68yR -O install.sh
 ```
