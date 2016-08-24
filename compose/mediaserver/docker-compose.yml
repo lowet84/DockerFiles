@@ -90,7 +90,7 @@ services:
 
   
   traefik:
-    image: lowet84\traefik
+    image: lowet84/traefik
     restart: always
     ports:
       - 80:80
