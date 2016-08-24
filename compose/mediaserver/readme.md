@@ -19,3 +19,9 @@ docker-compose up -d
 - set move completed 
 - set replace from: "\/rar2fs\/\<MNTPATH>\/(.\*?)\/.*" 
 - set replace to: "/mnt/\<MNTPATH>/$1/{Name}"
+
+#Install script
+- download instll script using
+```
+wget goo.gl/dg68yR -O install.sh
+```
