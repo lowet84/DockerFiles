@@ -70,3 +70,9 @@ services:
   
 networks:
   mediaserver:
+
+volumes:
+  jackett:
+  plex:
+  deluge:
+  sonarr:
