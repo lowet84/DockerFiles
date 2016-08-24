@@ -8,6 +8,11 @@ export SOME_VARIABLE=something
 - MNTPATH - any mount name path
 - SMBFOLDER - share name on the SMB server 
 
+#Start with docker-compose
+```
+docker-compose up -d
+```
+
 #In Sonarr: 
 - add Deluge download client, 
 - set advanced settings shown, 
