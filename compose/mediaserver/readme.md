@@ -1,4 +1,4 @@
-Set environment variables first!
+#Set environment variables first!
 export SOME_VARIABLE=something
 
 - DOMAIN - the domain you want to use for the mediaserver "mediaserver" gives "plex.mediaserver" etc.
@@ -8,7 +8,7 @@ export SOME_VARIABLE=something
 - MNTPATH - any mount name path
 - SMBFOLDER - share name on the SMB server 
 
-In Sonarr: 
+#In Sonarr: 
 - add Deluge download client, 
 - set advanced settings shown, 
 - set move completed 
