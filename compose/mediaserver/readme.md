@@ -6,4 +6,9 @@ SMBUSER
 MNTPATH
 SMBFOLDER
 
-In Sonarr, add Deluge download client, set advanced settings shown, set move completed and set relace from: "\/rar2fs\/\<MNTPATH>\/(.\*?)\/.*" and set replace to: "/mnt/\<MNTPATH>/$1/{Name}"
+In Sonarr: 
+-add Deluge download client, 
+-set advanced settings shown, 
+-set move completed 
+-set replace from: "\/rar2fs\/\<MNTPATH>\/(.\*?)\/.*" 
+-set replace to: "/mnt/\<MNTPATH>/$1/{Name}"
