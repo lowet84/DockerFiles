@@ -1,58 +1,72 @@
-sonarr:
-  ports:
-  - 8989:8989/tcp
-  - 9898:9898/tcp
-  environment:
-    FOLDER: $SMBFOLDER
-    MOUNTPATH: $MNTPATH
-    SERVER: $SERVER
-    SMBPASSWORD: $SMBPASS
-    SMBUSER: $SMBUSER
-  tty: true
-  image: lowet84/sonarr
-  privileged: true
-  volumes:
-  - sonarr:/config
+version: '2'
 
-plex:
-  ports:
-  - 32400:32400/tcp
-  environment:
-    FOLDER: $SMBFOLDER
-    MOUNTPATH: $MNTPATH
-    SERVER: $SERVER
-    SMBPASSWORD: $SMBPASS
-    SMBUSER: $SMBUSER
-  tty: true
-  image: lowet84/plex
-  privileged: true
-  volumes:
-  - plex:/root
-
-jackett:
-  ports:
-  - 9117:9117/tcp
-  environment:
-    JACKETT_KEY: d7nc8w37y4mc9348u9q83mqv
-  labels:
-    io.rancher.container.pull_image: always
-  tty: true
-  image: lowet84/jackett
-  volumes:
-  - jackett:/root/.config/Jackett
-
-deluge:
-  ports:
-  - 53211:53211/tcp
-  - 8112:8112/tcp
-  environment:
-    FOLDER: $SMBFOLDER
-    MOUNTPATH: $MNTPATH
-    SERVER: $SERVER
-    SMBPASSWORD: $SMBPASS
-    SMBUSER: $SMBUSER
-  tty: true
-  image: lowet84/deluge
-  privileged: true
-  volumes:
-  - deluge:/config
+services:
+  sonarr:
+    ports:
+    - 8989:8989/tcp
+    - 9898:9898/tcp
+    environment:
+      FOLDER: $SMBFOLDER
+      MOUNTPATH: $MNTPATH
+      SERVER: $SERVER
+      SMBPASSWORD: $SMBPASS
+      SMBUSER: $SMBUSER
+    tty: true
+    image: lowet84/sonarr
+    privileged: true
+    volumes:
+    - sonarr:/config
+    networks:
+      - mediaserver
+  
+  plex:
+    ports:
+    - 32400:32400/tcp
+    environment:
+      FOLDER: $SMBFOLDER
+      MOUNTPATH: $MNTPATH
+      SERVER: $SERVER
+      SMBPASSWORD: $SMBPASS
+      SMBUSER: $SMBUSER
+    tty: true
+    image: lowet84/plex
+    privileged: true
+    volumes:
+    - plex:/root
+    networks:
+      - mediaserver
+  
+  jackett:
+    ports:
+    - 9117:9117/tcp
+    environment:
+      JACKETT_KEY: d7nc8w37y4mc9348u9q83mqv
+    labels:
+      io.rancher.container.pull_image: always
+    tty: true
+    image: lowet84/jackett
+    volumes:
+    - jackett:/root/.config/Jackett
+    networks:
+      - mediaserver
+  
+  deluge:
+    ports:
+    - 53211:53211/tcp
+    - 8112:8112/tcp
+    environment:
+      FOLDER: $SMBFOLDER
+      MOUNTPATH: $MNTPATH
+      SERVER: $SERVER
+      SMBPASSWORD: $SMBPASS
+      SMBUSER: $SMBUSER
+    tty: true
+    image: lowet84/deluge
+    privileged: true
+    volumes:
+    - deluge:/config
+    networks:
+      - mediaserver
+  
+networks:
+  mediaserver:
